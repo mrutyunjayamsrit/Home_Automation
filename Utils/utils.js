@@ -29,12 +29,12 @@ function getFormattedDeviceList(deviceList){
   })
 }
 
-function getDeviceInfo(device){
+function getDeviceInfo(device, status){
   let deviceInfo = [];
   deviceInfo.push({
     "deviceId": `${device}_device001`,
     "dataTs": 1584974220,
-    "status": "on",
+    "status": status,
     "deviceCount": 1
   })
   return deviceInfo;

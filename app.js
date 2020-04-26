@@ -16,6 +16,7 @@ const app = express();
 addAllDeviceToList('./deviceList.json');
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // To get the list oh home automation devices
 app.get('/list', async (req, res) => {
@@ -28,8 +29,10 @@ app.get('/list', async (req, res) => {
 
 // Adding new device to the list
 app.post('/add', async (req, res) => {
-  const device = req.query.device;
-  const getDeviceDetails = getDeviceInfo(device);
+  const device = req.body.device;
+  const status = req.body.status;
+  console.log('Device Data to add', device,status);
+  const getDeviceDetails = getDeviceInfo(device, status);
   const updateDevice = await insertDocuments(getDeviceDetails);
   console.log('Added device details: ', updateDevice);
   res.send('Added device to the Device List');
