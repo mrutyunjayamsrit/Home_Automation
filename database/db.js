@@ -8,7 +8,7 @@ let db = '';
 
 MongoClient.connect(URL, (error, client) => {
   if (error) {
-    console.log('DB connect failure');
+    log.debug('DB connect failure');
     return;
   }
 
@@ -38,7 +38,7 @@ insertDocuments = (content) => {
 
 const findDocuments = function (query) {
   // Get the documents collection
-  const collection = db.collection('statelist');
+  const collection = db.collection('deviceList');
   return new Promise((resolve, reject) => {
     // Find some documents
     collection.find(query).toArray((err, docs) => {
@@ -53,8 +53,39 @@ const findDocuments = function (query) {
   });
 };
 
+const updateDocument = function(query) {
+  // Get the documents collection
+  const collection = db.collection('deviceList');
+  return new Promise((resolve, reject)=>{
+    collection.updateOne(query, function(err, result) {
+      if(err){
+        console.log('Error to update the records');
+        reject('Error to update the records');
+      }
+      console.log("Updated the document with the field a equal to 2");
+      resolve(result);
+    });
+  })
+}
+
+const removeDocument = function(query) {
+  // Get the documents collection
+  const collection = db.collection('deviceList');
+  return new Promise((resolve, reject)=>{
+    collection.deleteOne(query, function(err, result) {
+      if(err){
+        console.log('Error while removing devce from list');
+        reject('Error while removing devce from list');
+      }
+      resolve(result);
+    });
+  }) 
+}
+
 
 module.exports = {
   insertDocuments,
-  findDocuments
+  findDocuments,
+  updateDocument,
+  removeDocument
 };

@@ -1,0 +1,38 @@
+[
+{
+	"deviceId": "temprature_device001",
+	"dataTs": 1584974220,
+	"temp": 24,
+	"status": "on",
+	"deviceCount": 1
+},
+{
+	"deviceId": "humidity_device002",
+	"dataTs": 1584974220,
+	"humd": 23.3,
+	"status": "on",
+	"deviceCount": 1
+},
+{
+	"deviceId": "halLight_device003",
+	"dataTs": 1584974220,
+	"connected": true,
+	"status": "on",
+	"deviceCount": 1
+},
+{
+	"deviceId": "heature_device004",
+	"dataTs": 1584974220,
+	"connected": true,
+	"waterTemp": 60,
+	"status":"on",
+	"deviceCount": 1
+},
+{
+	"deviceId": "bedLamp_device004",
+	"dataTs": 1584974220,
+	"connected": false,
+	"status":"on",
+	"deviceCount": 1
+}
+]
