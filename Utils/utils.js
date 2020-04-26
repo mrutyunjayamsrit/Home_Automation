@@ -1,8 +1,10 @@
 const fs = require('fs');
 const {log} = require('../log_utils/app_logger');
+const config = require('config');
 
 const database = require('../database/db.js');
 
+const {InsertOnce} = config;
 const {insertDocuments} = database;
 
 function addAllDeviceToList(filename){
@@ -12,7 +14,10 @@ function addAllDeviceToList(filename){
     }
     // console.log(JSON.parse(data));
     // Bulk insert operation is done only once to DB at the begginning
-    // insertDocuments(JSON.parse(data));
+    console.log('Config Insert:', InsertOnce);
+    if(InsertOnce === true){
+      insertDocuments(JSON.parse(data));
+    }
   });
 }
 

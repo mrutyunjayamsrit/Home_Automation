@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const utils = require('./Utils/utils.js');
 const database = require('./database/db.js');
+const config = require('config');
 
 const {findDocuments, removeDocument, insertDocuments} = database;
 
