@@ -1,3 +1,7 @@
 loglevel: debug
 
 InsertOnce: false
+
+MongoURL: mongodb://localhost:27017
+
+MQTTURL: mqtt://test.mosquitto.org

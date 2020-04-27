@@ -1,8 +1,7 @@
 const { MongoClient } = require('mongodb');
 const config = require('config');
-
-// const URL = 'mongodb+srv://root:root@auth-qhv4r.mongodb.net:27017/CityList'
-const URL = 'mongodb://localhost:27017';
+const {MongoURL} = config;
+const URL = MongoURL;
 
 const DbName = 'devices';
 let db = '';

@@ -1,5 +1,39 @@
 <!DOCTYPE html>
 <html>
-
+<title>Home Automation</title>
+<body>
+  <h1>Home Automation</h1>
+  <form id="deviceList" action="list" method="get">
+    <div>
+        <label for="email">Get List Of Devices: </label>
+        <Button type="submit" value="Submit">Device List</Button>
+    </div>
+  </form>
+  <br />
+  <form id="addDevice" action="add" method="POST">
+    <div>
+        <label for="email">Device Name: </label>
+        <input type="text" id="device" name="device"></input>
+        <label for="email">Status: </label>
+        <input type="text" id="status" name="status"></input>
+        <button type="submit" value="Submit">Add Device</button>
+    </div>
+  </form>
+  <br />
+  <form id="deleteDevice" action="delete" method="get">
+    <div>
+      <label for="email">Device Name: </label>
+      <input type="text" id="device" name="device"></input>
+      <button type="submit" value="Delete">Delete</button>
+    </div>
+  </form>
+  <br />
+  <form id="deviceInfo" action="getDeviceInfo" method="get">
+    <div>
+        <label for="email">Get Device Information by enabling MQTT broker: </label>
+        <Button type="submit" value="Submit">Device Info</Button>
+    </div>
+  </form>
+</body>
 
 </html>
