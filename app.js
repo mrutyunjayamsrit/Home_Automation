@@ -38,7 +38,7 @@ app.get('/list', async (req, res) => {
   const query = {};
   const listOfDevices = await findDocuments(query);
   const deviceList = await getFormattedDeviceList(listOfDevices);
-  console.log(deviceList);
+  log.debug(deviceList);
   res.send(deviceList);
 });
 
@@ -46,10 +46,10 @@ app.get('/list', async (req, res) => {
 app.post('/add', async (req, res) => {
   const device = req.body.device;
   const status = req.body.status;
-  console.log('Device Data to add', device,status);
+  log.debug('Device Data to add', device,status);
   const getDeviceDetails = getDeviceInfo(device, status);
   const updateDevice = await insertDocuments(getDeviceDetails);
-  console.log('Added device details: ', updateDevice);
+  log.debug('Added device details: ', updateDevice);
   res.send('Added device to the Device List');
 });
 
@@ -74,16 +74,16 @@ app.get('/getDeviceInfo', async (req, res) => {
   client.on('connect',()=>{
     if(client.connected === true){
       client.publish("topic01",JSON.stringify(listOfDevices),mqttOptions);
-      console.log("Message published");
+      log.debug("Message published");
     }
   client.subscribe('topic01',qos);
   });
   let msg = '';
   client.on('message',(topic, message)=>{
     console.log("Message is: ", message.toString());
+    log.debug("Message is: ", message.toString());
     msg = message;
-    console.log("topic is: ",topic);
-    console.log('Type Of message: ', typeof(message));
+    log.debug("topic is: ",topic);
     if(message.length > 25){
       res.end(`Subscribed topic ${topic} from mqtt broker. subscribed message:- ${msg}`);
     }
@@ -98,7 +98,7 @@ app.get('/getDeviceInfo', async (req, res) => {
 // Removing the device from the Device List
 app.get('/delete', async (req, res) => {
   const deleteDevice = req.query.device;
-  console.log('Deleting device: ', deleteDevice);
+  log.debug('Deleting device: ', deleteDevice);
   const query = {"deviceId": deleteDevice};
   const deleteItem = await removeDocument(query);
   res.send(`Successfully deleted device ${deleteDevice} from the list`);

@@ -14,7 +14,7 @@ function addAllDeviceToList(filename){
     }
     // console.log(JSON.parse(data));
     // Bulk insert operation is done only once to DB at the begginning
-    console.log('Config Insert:', InsertOnce);
+    log.debug('Config Insert:', InsertOnce);
     if(InsertOnce === true){
       insertDocuments(JSON.parse(data));
     }

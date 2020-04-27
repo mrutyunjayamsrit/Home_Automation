@@ -27,5 +27,8 @@ To run the code locally follow the below steps:-
   http://localhost:3030/getDeviceInfo
 
 6) Usually for additing device info we will use websocket or MQTT protocol. I am making use of MQTT protocol to publish the information from my device and subscribe the topic001 which i have published with device infomation. In realtime devices will publish data to mqtt broker and the client will subscribe the data from the broker.
-This also demonstrate the event handlings  with clinet.on() methods. 
+This also demonstrate the event handlings  with clinet.on() methods.
+
+
+7) Using the library package 'bunyan' for logging and tracing purpose. we can enable log.debug, log.info, log.error using this.
 
