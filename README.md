@@ -32,3 +32,7 @@ This also demonstrate the event handlings  with clinet.on() methods.
 
 7) Using the library package 'bunyan' for logging and tracing purpose. we can enable log.debug, log.info, log.error using this.
 
+8) To run Testcases use 'npm test' or mocha ./test or launch.json to execute in visual studio code
+
+9) Added option to switch on and off the device and updating device status. This operation can be performed by sending sms or through the app.
+

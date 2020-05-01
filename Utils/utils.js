@@ -8,17 +8,23 @@ const {InsertOnce} = config;
 const {insertDocuments} = database;
 
 function addAllDeviceToList(filename){
-  const read = fs.readFile(filename,(err,data)=>{
-    if(err){
-      log.error('DEBUG: error in reading a file: ', filename);
-    }
-    // console.log(JSON.parse(data));
-    // Bulk insert operation is done only once to DB at the begginning
-    log.debug('Config Insert:', InsertOnce);
-    if(InsertOnce === true){
-      insertDocuments(JSON.parse(data));
-    }
-  });
+  try {
+    const read = fs.readFile(filename,(err,data)=>{
+      if(err){
+        log.error('DEBUG: error in reading a file: ', filename);
+      }
+      // console.log(JSON.parse(data));
+      // Bulk insert operation is done only once to DB at the begginning
+      log.debug('Config Insert:', InsertOnce);
+      if(InsertOnce === true){
+        insertDocuments(JSON.parse(data));
+      } else {
+        return "Records already exists";
+      }
+    });
+  } catch (error) {
+    return "file doesn't exists";
+  }
 }
 
 function getFormattedDeviceList(deviceList){

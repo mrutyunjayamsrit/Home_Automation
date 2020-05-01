@@ -8,7 +8,7 @@ const mqtt = require('mqtt');
 
 const {MQTTURL} = config;
 
-const {findDocuments, removeDocument, insertDocuments} = database;
+const {findDocuments, removeDocument, insertDocuments, updateDocument} = database;
 
 const {addAllDeviceToList, getFormattedDeviceList, getDeviceInfo} = utils;
 
@@ -103,6 +103,21 @@ app.get('/delete', async (req, res) => {
   const deleteItem = await removeDocument(query);
   res.send(`Successfully deleted device ${deleteDevice} from the list`);
 });
+
+app.get('/updateDeviceInfo',async (req,res)=>{
+  const deviceName = req.query.devicename;
+  const Status = req.query.status;
+  log.debug('Update: ', deviceName, Status);
+  const statusUpdate = {$set: {status: Status}};
+  const query = {deviceId: deviceName};
+  // log.debug('Query:', query);
+  const update = await updateDocument(query, statusUpdate);
+  // log.debug("Status updated successfully: ", update);
+  const query3 = {"deviceId": deviceName};
+  const query2 = {"_id":0};
+  const listOfDevices = await findDocuments(query3, query2);
+  res.send(listOfDevices);
+})
 
 // Listening to port 3030
 app.listen(PORT, () => {

@@ -34,6 +34,23 @@
         <Button type="submit" value="Submit">Device Info</Button>
     </div>
   </form>
+  <br />
+  <form id="updateDeviceInfo" action="updateDeviceInfo" method="get">
+    <div>
+        <label for="email">Device switch On and Off: </label>
+        <select name="devicename">
+          <option>temprature_device001</option>
+          <option>halLight_device003</option>
+          <option>heature_device004</option>
+          <option>bedLamp_device004</option>
+        </select>
+        <select name="status">
+          <option>On</option>
+          <option>Off</option>
+        </select>
+        <Button type="submit" value="Submit">Switch On/Off</Button>
+    </div>
+  </form>
 </body>
 
 </html>

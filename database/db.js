@@ -37,12 +37,12 @@ insertDocuments = (content) => {
  * @param {Query data from Mongo DB} query
  */
 
-const findDocuments = function (query) {
+const findDocuments = function (query, query2 = null) {
   // Get the documents collection
   const collection = db.collection('deviceList');
   return new Promise((resolve, reject) => {
     // Find some documents
-    collection.find(query).toArray((err, docs) => {
+    collection.find(query,query2).toArray((err, docs) => {
       if (err) {
         console.log('Error to read the records');
         log.error('Error to read the records');
@@ -55,11 +55,11 @@ const findDocuments = function (query) {
   });
 };
 
-const updateDocument = function(query) {
+const updateDocument = function(query, newValue) {
   // Get the documents collection
   const collection = db.collection('deviceList');
   return new Promise((resolve, reject)=>{
-    collection.updateOne(query, function(err, result) {
+    collection.updateOne(query,newValue, function(err, result) {
       if(err){
         console.log('Error to update the records');
         log.error('Error to update the records');
